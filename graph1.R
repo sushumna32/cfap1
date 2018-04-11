@@ -1,16 +1,25 @@
 # Plot using Business Data
+df1
 #use df1 : load(file='./data/ba.Rdata')
 # Data
-
-#scatter Plot
-plot(adtv, sales)
-plot(x=adtv, y=adweb, pch=10, type='p', col='green')
-abline(lm(adweb ~ adtv))
-
+load(file='./data/badata.Rdata')
+df1
+attach(df1) #attach variable names , opens uo the names 
+#scatter Plot     
+plot(adtv, sales) #(x,y)
+plot(x=adtv, y=adweb, pch=15, type='p', col='yellow') #pch=plotting symbol type =point plot , line plots ,etc
+abline(lm(adweb ~ adtv)) #regression line line passing through most of the poists
+library(car)
+?cars
+?car
 car::scatterplot(sales ~ ., data=df1, legend.columns=T)
+df1[20,] 
 car::scatterplot(sales ~ adtv, data=df1, legend.columns=T)
 
 car::scatterplotMatrix(~ sales + adtv + adweb, data=df1)
+plot(sales, adtv)
+plot(sales,adweb)
+plot(adtv,adweb)
 
 pairs( ~ sales + adtv + adweb, data=df1)
 
@@ -76,10 +85,11 @@ lines(density(df1$sales), lwd=2, col='red')
 
 str(df1)
 #box plots
-boxplot(df1$sales)
+boxplot(df1$sales) #5 number summary min ,max 1stquant.. #contunuous variable = boxplot 
 boxplot(df1$sales ~ df1$coy + df1$loc)
 
 boxplot(df1$sales ~ df1$coy, varwidth=T, col=1:3)
+#lattice,ggplot - imp for graphical 
 
 
 
